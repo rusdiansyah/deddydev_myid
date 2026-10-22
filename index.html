@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deddy Rusdiansyah, M.Kom - Dosen & Senior Software Engineer</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v4 Browser Build CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom scrollbar & glassmorphism utilities */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 4px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-sky-500 selection:text-white transition-colors duration-300">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-200/80 dark:border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                    D
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-slate-900 via-sky-600 to-cyan-500 dark:from-white dark:via-sky-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                        deddydev<span class="text-sky-500">.my.id</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-widest uppercase">Lecturer | Software Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-medium text-sm text-slate-600 dark:text-slate-300">
+                <a href="#home" class="px-3 py-2 rounded-lg hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Beranda</a>
+                <a href="#about" class="px-3 py-2 rounded-lg hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Tentang</a>
+                <a href="#skills" class="px-3 py-2 rounded-lg hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Keahlian</a>
+                <a href="#experience" class="px-3 py-2 rounded-lg hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Pengalaman</a>
+                <a href="#portfolio" class="px-3 py-2 rounded-lg hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Portfolio</a>
+                <a href="#contact" class="px-3 py-2 rounded-lg hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Kontak</a>
+            </nav>
+
+            <!-- Actions Right -->
+            <div class="flex items-center space-x-3">
+                <!-- Dark Mode Toggle Button -->
+                <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-sm">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-700"></i>
+                </button>
+
+                <!-- CTA Button -->
+                <a href="https://wa.me/6287774037723" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-500 hover:to-cyan-400 text-white font-semibold text-sm shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all transform hover:-translate-y-0.5">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>Konsultasi</span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Mobile Menu" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2">
+            <a href="#home" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Beranda</a>
+            <a href="#about" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Tentang Saya</a>
+            <a href="#skills" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Keahlian Tech</a>
+            <a href="#experience" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Pengalaman</a>
+            <a href="#portfolio" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Portfolio Proyek (27)</a>
+            <a href="#contact" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Kontak</a>
+            <a href="https://wa.me/6287774037723" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-sky-600 text-white font-semibold mt-2">
+                <i data-lucide="phone-call" class="w-4 h-4"></i>
+                <span>Hubungi via WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+        <!-- Background Gradient Glow Orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sky-500/15 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-cyan-500/15 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Availability Pill -->
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm font-semibold tracking-wide">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        <span>Open for Academic & Software Projects</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <div class="space-y-2">
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white">
+                            Deddy Rusdiansyah,M.Kom
+                        </h1>
+                        <p class="text-lg sm:text-2xl font-bold text-sky-600 dark:text-sky-400 tracking-tight">
+                            Dosen Informatika & Senior Software Engineer
+                        </p>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                        Praktisi Teknologi Informasi berpengalaman lebih dari <strong class="text-slate-900 dark:text-white font-semibold">20 tahun</strong>. Berfokus pada pengembangan sistem enterprise, integrasi SIAKAD, sistem keuangan, arsitektur microservices, serta pengajaran akademis di perguruan tinggi.
+                    </p>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300/60 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                            <i data-lucide="code" class="w-3.5 h-3.5 text-red-500"></i> Laravel & CI
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300/60 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                            <i data-lucide="cpu" class="w-3.5 h-3.5 text-sky-500"></i> RESTful API Integration
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300/60 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                            <i data-lucide="database" class="w-3.5 h-3.5 text-amber-500"></i> Neo Feeder & Payment H2H
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300/60 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                            <i data-lucide="server" class="w-3.5 h-3.5 text-emerald-500"></i> Ubuntu Server
+                        </span>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-500 hover:to-cyan-400 text-white font-bold text-base shadow-xl shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            <span>Jelajahi 27+ Portfolio</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://wa.me/6287774037723" target="_blank" class="w-full sm:w-auto px-7 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800/80 font-bold text-base transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-emerald-500"></i>
+                            <span>Hubungi Kontak</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Avatar & Dynamic Graphic -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Glowing backdrop ring -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-sky-500 to-cyan-400 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+                        
+                        <!-- Avatar Card Frame -->
+                        <div class="relative rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/60 p-4 sm:p-6 backdrop-blur-xl shadow-2xl">
+                            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-sky-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 aspect-square flex items-center justify-center group">
+                                <img src="deddy_rusdiansyah.png" 
+                                     alt="Deddy Rusdiansyah, M.Kom" 
+                                     class="object-cover w-full h-full rounded-2xl group-hover:scale-105 transition-transform duration-500">
+                                
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80"></div>
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <p class="font-bold text-lg">Deddy Rusdiansyah, M.Kom</p>
+                                    <p class="text-xs text-sky-300">Dosen & Senior Software Engineer</p>
+                                </div>
+                            </div>
+
+                            <!-- Floating Badge Top Right -->
+                            <div class="absolute -top-4 -right-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold">
+                                    <i data-lucide="award" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Pengalaman</div>
+                                    <div class="text-sm font-extrabold text-slate-900 dark:text-white">20+ Tahun TI</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Badge Bottom Left -->
+                            <div class="absolute -bottom-4 -left-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-400">Proyek Perangkat Lunak</div>
+                                    <div class="text-sm font-extrabold text-slate-900 dark:text-white">27+ Selesai</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTER STATISTICS -->
+    <section class="py-10 border-y border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                
+                <div class="p-4 rounded-2xl bg-slate-100/60 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-sky-600 to-cyan-500 bg-clip-text text-transparent">20+</div>
+                    <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Tahun Pengalaman TI</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-100/60 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-sky-600 to-cyan-500 bg-clip-text text-transparent">27+</div>
+                    <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Sistem Perangkat Lunak</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-100/60 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-sky-600 to-cyan-500 bg-clip-text text-transparent">7+</div>
+                    <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Perguruan Tinggi Mengajar</div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-100/60 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-sky-600 to-cyan-500 bg-clip-text text-transparent">100%</div>
+                    <div class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">Komitmen & Kualitas</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & EDUCATION SECTION -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="user" class="w-3.5 h-3.5"></i> Profil Singkat
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                    Tentang Saya & Pendidikan
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Mengenal lebih dekat latar belakang profesional, biodata, dan riwayat akademis magister informatika.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Left: Profile Data Card -->
+                <div class="lg:col-span-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xl space-y-6">
+                    <div class="flex items-center space-x-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold">
+                            <i data-lucide="id-card" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Data Pribadi</h3>
+                            <p class="text-xs text-slate-500">Informasi identitas dan kontak domisili</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Nama Lengkap</span>
+                            <p class="font-semibold text-slate-900 dark:text-slate-100">Deddy Rusdiansyah, M.Kom</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Tempat, Tgl Lahir</span>
+                            <p class="font-semibold text-slate-900 dark:text-slate-100">Pandeglang, 05 Ags 1979</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Profesi Utama</span>
+                            <p class="font-semibold text-slate-900 dark:text-slate-100">Dosen & Software Engineer</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Agama / Gender</span>
+                            <p class="font-semibold text-slate-900 dark:text-slate-100">Islam / Laki-laki</p>
+                        </div>
+
+                        <div class="sm:col-span-2 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Alamat Tempat Tinggal</span>
+                            <p class="font-semibold text-slate-900 dark:text-slate-100 flex items-start gap-1.5">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-sky-500 shrink-0 mt-0.5"></i>
+                                <span>Cimuncang Sidomuncul No. 16 Rt.003 Rw.20, Kota Serang - Banten (42115)</span>
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Email Utama</span>
+                            <p class="font-semibold text-slate-900 dark:text-slate-100 truncate">deddyrusdiansyah@gmail.com</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-1">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Website Official</span>
+                            <p class="font-semibold text-sky-600 dark:text-sky-400 truncate">
+                                <a href="https://deddydev.my.id" target="_blank" class="hover:underline">https://deddydev.my.id</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Education Timeline -->
+                <div class="lg:col-span-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-xl space-y-6">
+                    <div class="flex items-center space-x-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Riwayat Pendidikan</h3>
+                            <p class="text-xs text-slate-500">Pendidikan formal gelar akademis IT</p>
+                        </div>
+                    </div>
+
+                    <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 pl-6 space-y-8">
+                        
+                        <!-- S2 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-sky-500 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform"></div>
+                            <div class="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 hover:border-sky-500/50 transition-all space-y-1">
+                                <span class="px-2.5 py-0.5 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">
+                                    Lulus Tahun 2014
+                                </span>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                    Magister Komputer (S2) - Informatika
+                                </h4>
+                                <p class="text-sm font-medium text-slate-600 dark:text-slate-300">
+                                    STMIK Eresha Jakarta
+                                </p>
+                                <p class="text-xs text-slate-500">
+                                    Spesialisasi rekayasa perangkat lunak, sistem basis data lanjut, dan metodologi riset TI.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- S1 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-cyan-500 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform"></div>
+                            <div class="p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 hover:border-cyan-500/50 transition-all space-y-1">
+                                <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs font-bold">
+                                    Lulus Tahun 2010
+                                </span>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-1">
+                                    Sarjana Komputer (S1) - Sistem Informasi
+                                </h4>
+                                <p class="text-sm font-medium text-slate-600 dark:text-slate-300">
+                                    STMIK Banten Jaya
+                                </p>
+                                <p class="text-xs text-slate-500">
+                                    Fokus pada perancangan sistem informasi enterprise, pemrograman berorientasi objek, dan manajemen TI.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS & TECH STACK SECTION -->
+    <section id="skills" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i> Tech Stack & Capability
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                    Keahlian & Penguasaan Teknologi
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Menguasai spektrum penuh dari pemrograman web, mobile, infrastruktur server, hingga integrasi sistem tingkat tinggi.
+                </p>
+            </div>
+
+            <!-- Skill Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1: Programming Languages -->
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-lg space-y-4 hover:border-sky-500/50 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center font-bold">
+                        <i data-lucide="terminal" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Languages</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">PHP (5.x, 7.x, 8.x)</span>
+                            <span class="text-xs font-bold text-sky-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">JavaScript (ES6+)</span>
+                            <span class="text-xs font-bold text-sky-500">Advanced</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">HTML5 & CSS3</span>
+                            <span class="text-xs font-bold text-sky-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Dart (Flutter Web/Mobile)</span>
+                            <span class="text-xs font-bold text-sky-500">Intermediate</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Visual Basic 6.0</span>
+                            <span class="text-xs font-bold text-slate-400">Legacy Master</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Frameworks & Libraries -->
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-lg space-y-4 hover:border-sky-500/50 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center font-bold">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Frameworks</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Laravel Framework</span>
+                            <span class="text-xs font-bold text-red-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">CodeIgniter</span>
+                            <span class="text-xs font-bold text-red-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">ReactJS & Tailwind CSS</span>
+                            <span class="text-xs font-bold text-sky-500">Advanced</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Flutter Framework</span>
+                            <span class="text-xs font-bold text-sky-500">Advanced</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">CakePHP</span>
+                            <span class="text-xs font-bold text-slate-400">Proficient</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Server & DevOps -->
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-lg space-y-4 hover:border-sky-500/50 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+                        <i data-lucide="server" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">DevOps & Server</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Ubuntu Linux Server</span>
+                            <span class="text-xs font-bold text-emerald-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Intranet & Internet Config</span>
+                            <span class="text-xs font-bold text-emerald-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Nginx & Apache Web Server</span>
+                            <span class="text-xs font-bold text-emerald-500">Advanced</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">MySQL & PostgreSQL DB</span>
+                            <span class="text-xs font-bold text-emerald-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Client-Server Arch</span>
+                            <span class="text-xs font-bold text-emerald-500">Expert</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: System Integration -->
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-lg space-y-4 hover:border-sky-500/50 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center font-bold">
+                        <i data-lucide="workflow" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">System Integration</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">RESTful API Architecture</span>
+                            <span class="text-xs font-bold text-purple-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">SIAKAD & Neo Feeder Integrator</span>
+                            <span class="text-xs font-bold text-purple-500">Specialist</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Payment Gateway (Midtrans)</span>
+                            <span class="text-xs font-bold text-purple-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Bank H2H (BNI & BTN SPP)</span>
+                            <span class="text-xs font-bold text-purple-500">Expert</span>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600 dark:text-slate-300 font-medium">Data Synchronization</span>
+                            <span class="text-xs font-bold text-purple-500">Expert</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION (ACADEMIC VS INDUSTRY TAB) -->
+    <section id="experience" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="briefcase" class="w-3.5 h-3.5"></i> Track Record & Career
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                    Pengalaman Kerja & Mengajar
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Sinergi harmonis antara dedikasi akademis di dunia perguruan tinggi dan implementasi nyata di dunia industri IT.
+                </p>
+            </div>
+
+            <!-- Tab Switch Buttons -->
+            <div class="flex justify-center">
+                <div class="inline-flex p-1.5 rounded-2xl bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300/50 dark:border-slate-700/50">
+                    <button id="tabTeachingBtn" onclick="switchExperienceTab('teaching')" class="px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-md">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span>Pengalaman Mengajar (Akademis)</span>
+                    </button>
+                    <button id="tabIndustryBtn" onclick="switchExperienceTab('industry')" class="px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                        <span>Pengalaman Industri (Karir)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Teaching Experience Tab Content -->
+            <div id="teachingContent" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3 relative overflow-hidden group">
+                    <div class="w-2 h-full bg-sky-500 absolute left-0 top-0"></div>
+                    <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">Dosen Tetap</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors">Universitas Mangku Wiyata - Cilegon</h3>
+                    <p class="text-xs text-slate-500">Mengajar pada program studi Informatika.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3 relative overflow-hidden group">
+                    <div class="w-2 h-full bg-sky-500 absolute left-0 top-0"></div>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold">Dosen Tetap</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors">Universitas Primagraha - Serang</h3>
+                    <p class="text-xs text-slate-500">Mengajar mata kuliah Sistem Informasi, Pemrograman Web Lanjut, dan Integrasi Basis Data.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3 relative overflow-hidden group">
+                    <div class="w-2 h-full bg-cyan-500 absolute left-0 top-0"></div>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold">Dosen Tetap Non PNS</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors">UIN SMH Banten - Serang</h3>
+                    <p class="text-xs text-slate-500">Dosen pengampu bidang Informatika, Analisis Sistem, dan Infrastruktur TI Kampus.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3 relative overflow-hidden group">
+                    <div class="w-2 h-full bg-slate-400 absolute left-0 top-0"></div>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold">Dosen Luar Biasa (LB)</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Serang Raya (UNSERA)</h3>
+                    <p class="text-xs text-slate-500">Pengajaran Praktikum Pemrograman & Algoritma Sistem Informasi.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3 relative overflow-hidden group">
+                    <div class="w-2 h-full bg-slate-400 absolute left-0 top-0"></div>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold">Dosen Luar Biasa (LB)</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Bung Karno - Jakarta</h3>
+                    <p class="text-xs text-slate-500">Dosen Pengampu Rekayasa Perangkat Lunak & Sistem Basis Data.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3 relative overflow-hidden group">
+                    <div class="w-2 h-full bg-slate-400 absolute left-0 top-0"></div>
+                    <span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold">Dosen Luar Biasa (LB)</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">STMIK Banten Jaya - Serang</h3>
+                    <p class="text-xs text-slate-500">Dosen Praktikum Visual Programming & Pemrograman Web Client-Server.</p>
+                </div>
+
+            </div>
+
+            <!-- Industry Experience Tab Content (Hidden by default) -->
+            <div id="industryContent" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Sektor Pendidikan</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Mangku Wiyata - Cilegon</h3>
+                    <p class="text-xs text-slate-500">Kepala Pusat Data dan Informasi (PUSDATIN)</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Sektor Pendidikan</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Primagraha - Serang</h3>
+                    <p class="text-xs text-slate-500">Lead Systems Architect & IT Developer pengembangan SIAKAD, Midtrans, & Neo Feeder.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Sektor PTN / Perluasan</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">UIN SMH Banten - Serang</h3>
+                    <p class="text-xs text-slate-500">Senior Programmer & Systems Integrator SPP H2H Bank BTN, BNI, dan PMB Online.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Sektor Pelayaran & Logistik</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">PT. Pancaran Samudera Transport - Jakarta</h3>
+                    <p class="text-xs text-slate-500">Software Developer Sistem Profit & Loss (P&L) serta Logistik Distribusi Barang Maritime.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Sektor Konsultan IT</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">PT. Praweda Cipta Karsa Informatika</h3>
+                    <p class="text-xs text-slate-500">Software Engineer proyek-proyek pemerintah dan sistem informasi korporasi.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-3">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold">Sektor Pengelolaan Properti</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">PT. Primantara Wisesa Sejahtera</h3>
+                    <p class="text-xs text-slate-500">Desktop Software Developer Visual Basic 6.0 untuk Parkir, Building Service Charge, dan Absensi.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PORTFOLIO PROJECTS SECTION (INTERACTIVE SEARCH & FILTERS FOR ALL 27 PROJECTS) -->
+    <section id="portfolio" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            
+            <!-- Section Title -->
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i> Proyek Showcase
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                    Portfolio Proyek Perangkat Lunak (27)
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Rekam jejak 27 karya sistem informasi, integrasi API, payment gateway, dan aplikasi intranet/internet yang telah diimplementasikan secara riil.
+                </p>
+            </div>
+
+            <!-- Controls Header: Category Filter Pills & Search Input -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md">
+                
+                <!-- Filter Pills -->
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="categoryFilters">
+                    <button onclick="filterPortfolio('all')" class="filter-btn active-filter px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-sm" data-category="all">
+                        Semua (27)
+                    </button>
+                    <button onclick="filterPortfolio('kampus')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-category="kampus">
+                        Akademik / Kampus
+                    </button>
+                    <button onclick="filterPortfolio('enterprise')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-category="enterprise">
+                        Perusahaan / BUMN
+                    </button>
+                    <button onclick="filterPortfolio('pemerintah')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-category="pemerintah">
+                        Pemerintah / Instansi
+                    </button>
+                    <button onclick="filterPortfolio('desktop')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-category="desktop">
+                        Desktop / VB6
+                    </button>
+                </div>
+
+                <!-- Real-time Search Bar -->
+                <div class="relative w-full md:w-72">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="portfolioSearch" onkeyup="searchPortfolio()" placeholder="Cari judul atau tech..." class="w-full pl-10 pr-4 py-2 rounded-xl text-xs sm:text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
+                </div>
+
+            </div>
+
+            <!-- Portfolio Grid Container -->
+            <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Projects will be rendered dynamically via JavaScript for full 27 project interactivity -->
+            </div>
+
+            <!-- Pagination / Counter status -->
+            <div class="flex items-center justify-between pt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+                <span id="projectCounterText">Menampilkan 27 dari 27 Proyek</span>
+                <span class="font-medium text-sky-600 dark:text-sky-400 flex items-center gap-1">
+                    <i data-lucide="info" class="w-4 h-4"></i> Klik kartu proyek untuk melihat detail modal
+                </span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT & LOCATION SECTION -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="text-center space-y-3 max-w-2xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i> Hubungi & Konsultasi
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                    Mari Bekerja Sama
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Apakah Anda membutuhkan pengembangan Sistem Informasi Kampus, Integrasi Payment Gateway, Pengajaran IT, atau Konsultasi Software?
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left Quick Info Cards -->
+                <div class="lg:col-span-5 space-y-4">
+                    
+                    <!-- WhatsApp Direct Card -->
+                    <a href="https://wa.me/6287774037723" target="_blank" class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:border-emerald-500/50 transition-all flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 font-medium">WhatsApp / Handphone</div>
+                            <div class="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">087774037723</div>
+                            <div class="text-xs text-emerald-500 font-medium mt-0.5">Respon cepat via WA</div>
+                        </div>
+                    </a>
+
+                    <!-- Email Direct Card -->
+                    <a href="mailto:deddyrusdiansyah@gmail.com" class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:border-sky-500/50 transition-all flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center font-bold shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div class="text-xs text-slate-500 font-medium">Email Resmi</div>
+                            <div class="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors truncate">deddyrusdiansyah@gmail.com</div>
+                            <div class="text-xs text-sky-500 font-medium mt-0.5">Pertanyaan formal & akademis</div>
+                        </div>
+                    </a>
+
+                    <!-- Website Card -->
+                    <a href="https://deddyrusdiansyah.blogspot.com" target="_blank" class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:border-cyan-500/50 transition-all flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center font-bold shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 font-medium">Official Website</div>
+                            <div class="text-base font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors">https://deddyrusdiansyah.blogspot.com</div>
+                            <div class="text-xs text-cyan-500 font-medium mt-0.5">Portofolio & Blog Tekno</div>
+                        </div>
+                    </a>
+
+                    <!-- Address Location Card -->
+                    <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md space-y-2">
+                        <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-red-500"></i>
+                            <span>LOKASI ALAMAT</span>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200 leading-relaxed">
+                            Cimuncang Sidomuncul No. 16 Rt.003 Rw.20 Kota Serang - Banten (Kode Pos: 42115)
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Right Form Direct WA Builder -->
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl space-y-6">
+                    <div class="space-y-1 border-b border-slate-100 dark:border-slate-800 pb-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Kirim Pesan Instan</h3>
+                        <p class="text-xs text-slate-500">Isi formulir di bawah untuk langsung terhubung melalui WhatsApp</p>
+                    </div>
+
+                    <form id="waForm" onsubmit="sendWhatsAppMessage(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Nama Lengkap *</label>
+                                <input type="text" id="formName" required placeholder="Contoh: Dr. Ahmad Subagja" class="w-full px-4 py-3 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 outline-none">
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Instansi / Kampus / Perusahaan *</label>
+                                <input type="text" id="formOrg" required placeholder="Contoh: Universitas Banten" class="w-full px-4 py-3 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 outline-none">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Topik Konsultasi *</label>
+                            <select id="formTopic" class="w-full px-4 py-3 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 outline-none">
+                                <option value="Sistem Informasi SIAKAD & Neo Feeder">Sistem Informasi SIAKAD & Integrasi Feeder</option>
+                                <option value="Pengembangan Software & App Custom">Pengembangan Application Custom (Laravel/Flutter/CI)</option>
+                                <option value="Payment Gateway & Bank Host to Host">Integration Payment Gateway (Midtrans/BNI/BTN)</option>
+                                <option value="Konsultasi Server Ubuntu & Network">Konsultasi Ubuntu Linux Server & Infrastructure</option>
+                                <option value="Dosen Pengajar / Diskusi Akademis">Dosen Pengajar / Diskusi Akademis TI</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-700 dark:text-slate-300">Detail Pesan / Kebutuhan *</label>
+                            <textarea id="formMessage" rows="4" required placeholder="Tuliskan gambaran singkat mengenai kebutuhan proyek atau jadwal diskusi..." class="w-full px-4 py-3 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-sky-500 outline-none resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-base shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                            <span>Kirim Langsung ke WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-12 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-base">
+                    D
+                </div>
+                <div>
+                    <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">Deddy Rusdiansyah, M.Kom</span>
+                    <p class="text-[11px]">Dosen & Senior Software Engineer &copy; 2026. All rights reserved.</p>
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div class="flex flex-wrap items-center gap-6 font-medium text-slate-600 dark:text-slate-400">
+                <a href="#home" class="hover:text-sky-500 transition-colors">Beranda</a>
+                <a href="#about" class="hover:text-sky-500 transition-colors">Tentang</a>
+                <a href="#portfolio" class="hover:text-sky-500 transition-colors">Portfolio</a>
+                <a href="https://deddydev.my.id" target="_blank" class="hover:text-sky-500 transition-colors">deddydev.my.id</a>
+            </div>
+
+            <!-- Back to top button -->
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors flex items-center gap-1.5">
+                <span>Atas</span>
+                <i data-lucide="arrow-up" class="w-4 h-4"></i>
+            </button>
+
+        </div>
+    </footer>
+
+    <!-- PORTFOLIO DETAIL MODAL POPUP -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md">
+        <div class="relative w-full max-w-xl rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-2xl space-y-5 transform transition-all">
+            
+            <!-- Modal Close Button -->
+            <button onclick="closeProjectModal()" class="absolute top-5 right-5 p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Header Content -->
+            <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                    <span id="modalYear" class="px-2.5 py-0.5 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">2023</span>
+                    <span id="modalCategory" class="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold">Kampus</span>
+                </div>
+                <h3 id="modalTitle" class="text-2xl font-extrabold text-slate-900 dark:text-white leading-snug">
+                    Judul Proyek Perangkat Lunak
+                </h3>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 space-y-1">
+                    <span class="text-xs font-semibold text-slate-400">Klien / Perusahaan / Instansi</span>
+                    <p id="modalClient" class="font-bold text-slate-900 dark:text-white">Nama Perusahaan / Kampus</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 space-y-1">
+                    <span class="text-xs font-semibold text-slate-400">Teknologi & Framework</span>
+                    <p id="modalTech" class="font-bold text-sky-600 dark:text-sky-400">PHP (Laravel Framework), REST API</p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 space-y-1">
+                    <span class="text-xs font-semibold text-slate-400">Deskripsi Ringkas Implementasi</span>
+                    <p id="modalDesc" class="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                        Sistem informasi dirancang untuk menangani fungsionalitas utama enterprise, manajemen database terintegrasi, serta pelaporan otomatis real-time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold">
+                    Tutup Detail
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. DATA PORTFOLIO PROYEK (ALL 27 PROJECTS FROM CV) ---
+        const projectsData = [
+            {
+                id: 1,
+                title: "Sistem Informasi Integrasi SIAKAD dengan Neo Feeder",
+                client: "Universitas Mangku Wiyata",
+                tech: "PHP (Framework Laravel & Livewire)",
+                year: "2026",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Sistem sinkronisasi otomatis data akademik kampus (krs, khs, biodata, mata kuliah) langsung dengan web service PDDikti Neo Feeder Kemendikbud."
+            },
+            {
+                id: 2,
+                title: "Sistem Informasi Integrasi SIAKAD dengan Neo Feeder",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2023",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Sistem sinkronisasi otomatis data akademik kampus (krs, khs, biodata, mata kuliah) langsung dengan web service PDDikti Neo Feeder Kemendikbud."
+            },
+            {
+                id: 3,
+                title: "Sistem Informasi Wisuda (Integrasi SIAKAD)",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2022",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Aplikasi pendaftaran wisuda online, validasi bebas pustaka & keungan, cetak ijazah/transkrip serta verifikasi kelulusan terintegrasi SIAKAD."
+            },
+            {
+                id: 4,
+                title: "Sistem Informasi PLP (Pengenalan Lingkungan Persekolahan)",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2022",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Modul pengelolaan magang & PLP mahasiswa FKIP terintegrasi SIAKAD untuk alokasi sekolah mitra dan penilaian guru pamong/dosen supervisor."
+            },
+            {
+                id: 5,
+                title: "Sistem Informasi Kuliah Kerja Mahasiswa (KKM)",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2021",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Platform manajemen pendaftaran KKM, pembagian kelompok desa, pelaporan kegiatan harian, serta penilaian online terhubung SIAKAD."
+            },
+            {
+                id: 6,
+                title: "Sistem Informasi Kepegawaian (SIMPEG Kampus)",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2021",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Sistem basis data dosen & tenaga kependidikan, riwayat jabatan fungsional, kenaikan pangkat, hingga penyimpanan berkas digital."
+            },
+            {
+                id: 7,
+                title: "Website Profil Kampus Modern",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2020",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Portal informasi publik utama kampus dengan berita, agenda, informasi program studi, serta sarana pendaftaran mahasiswa."
+            },
+            {
+                id: 8,
+                title: "SIAKAD Integrasi PMB & Payment Gateway Midtrans",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2020",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Sistem informasi akademik utama dengan fitur penerimaan mahasiswa baru online dan integrasi pembayaran otomatis Virtual Account/QRIS Midtrans."
+            },
+            {
+                id: 9,
+                title: "Sistem Informasi Karir / Penerimaan Pegawai",
+                client: "Universitas Primagraha",
+                tech: "PHP (Framework Laravel)",
+                year: "2019",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Portal rekrutmen pegawai & dosen online, seleksi berkas administrasi, hingga pengumuman jadwal wawancara."
+            },
+            {
+                id: 10,
+                title: "Sistem Pengawasan Daerah (SIMWAS)",
+                client: "Inspektorat Kabupaten Serang",
+                tech: "PHP (Framework Codeigniter)",
+                year: "2017",
+                category: "pemerintah",
+                typeTag: "Intranet",
+                desc: "Sistem informasi audit dan tindak lanjut hasil pengawasan daerah bagi auditor internal pemerintah kabupaten."
+            },
+            {
+                id: 11,
+                title: "SIAKAD PMB, eCollection BNI & Integrasi Feeder",
+                client: "STIE Banten",
+                tech: "PHP (Framework Laravel)",
+                year: "2017",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Pengembangan sistem akademik terpadu lengkap dengan pendaftaran online, eCollection BNI, serta ekspor-impor Feeder Dikti."
+            },
+            {
+                id: 12,
+                title: "Sistem Pembayaran SPP Online Host to Host (H2H) BNI",
+                client: "UIN SMH Banten - Serang",
+                tech: "PHP (Framework Laravel)",
+                year: "2017",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Integrasi API Host-to-Host pembayaran UKT/SPP via ATM & Mobile Banking BNI secara real-time langsung membuka status KRS mahasiswa."
+            },
+            {
+                id: 13,
+                title: "Sistem Informasi Profit and Loss (P&L)",
+                client: "PT. Pancaran Samudera Transport",
+                tech: "PHP (Framework Codeigniter)",
+                year: "2017",
+                category: "enterprise",
+                typeTag: "Internet",
+                desc: "Aplikasi kalkulasi neraca laba rugi operasional kapal dan armada pengangkutan maritim secara spesifik dan terstruktur."
+            },
+            {
+                id: 14,
+                title: "Sistem Informasi Pengadaan & Pendistribusian Barang",
+                client: "PT. Pancaran Samudera Transport",
+                tech: "PHP (Framework Codeigniter)",
+                year: "2017",
+                category: "enterprise",
+                typeTag: "Internet",
+                desc: "Manajemen rantai pasok pengadaan suku cadang kapal, inventaris gudang, serta alokasi distribusi antar cabang."
+            },
+            {
+                id: 15,
+                title: "Port of Cigading Information System (POCIS)",
+                client: "PT Krakatau Bandar Samudera",
+                tech: "PHP (Framework CakePHP)",
+                year: "2016",
+                category: "enterprise",
+                typeTag: "Internet",
+                desc: "Sistem informasi kepelabuhanan untuk lalu lintas kapal, manajemen dermaga, serta bongkar muat kargo internasional."
+            },
+            {
+                id: 16,
+                title: "Sistem Informasi Akademik (SIAKAD CodeIgniter)",
+                client: "IAIN SMH Banten",
+                tech: "PHP (Framework Codeigniter)",
+                year: "2011",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Sistem pengelolaan jadwal kuliah, krs online, penilaian dosen, serta perhitungan IPK berbasis CodeIgniter."
+            },
+            {
+                id: 17,
+                title: "Sistem Informasi Penerimaan Mahasiswa Baru (PMB)",
+                client: "IAIN SMH Banten",
+                tech: "PHP (Framework Codeigniter)",
+                year: "2010",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Aplikasi seleksi ujian masuk perguruan tinggi agama Islam negeri dengan perengkingan nilai otomatis."
+            },
+            {
+                id: 18,
+                title: "Sistem Pembayaran SPP Online Host to Host (H2H) BTN",
+                client: "IAIN SMH Banten",
+                tech: "PHP v5",
+                year: "2010",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Pionir integrasi pembayaran SPP online Host-to-Host pertama dengan Bank Tabungan Negara (BTN) di IAIN SMH Banten."
+            },
+            {
+                id: 19,
+                title: "SI Penerimaan Pajak Daerah Non BPHTB & PBB",
+                client: "DPKAD Kota Serang",
+                tech: "PHP",
+                year: "2009",
+                category: "pemerintah",
+                typeTag: "Intranet",
+                desc: "Sistem informasi pengelolaan pajak restoran, hiburan, hotel, dan reklame untuk Dinas Pengelolaan Keuangan & Aset Daerah."
+            },
+            {
+                id: 20,
+                title: "Website Profil Kampus IAIN SMH Banten",
+                client: "IAIN SMH Banten",
+                tech: "PHP Native",
+                year: "2008",
+                category: "kampus",
+                typeTag: "Internet",
+                desc: "Portal institusi resmi kampus IAIN Banten memuat profil pimpinan, fakultas, berita, dan pengumuman."
+            },
+            {
+                id: 21,
+                title: "Sistem Koperasi Simpan Pinjam & Point of Sales (POS)",
+                client: "Koperasi Pemprov Banten",
+                tech: "Visual Basic 6.0",
+                year: "2008",
+                category: "enterprise",
+                typeTag: "Intranet / Desktop",
+                desc: "Aplikasi desktop client-server simpan pinjam anggota koperasi pegawai daerah serta modul kasir toko (POS)."
+            },
+            {
+                id: 22,
+                title: "Sistem Informasi Akademik Intranet Desktop",
+                client: "IAIN SMH Banten",
+                tech: "Visual Basic 6.0",
+                year: "2007",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Aplikasi desktop client-server untuk pencetakan krs, khs, dan ijazah langsung dari server basis data kampus."
+            },
+            {
+                id: 23,
+                title: "SI Arsip Digital Persyaratan Pembuatan Paspor",
+                client: "Imigrasi Kelas II Cilegon",
+                tech: "Visual Basic 6.0",
+                year: "2006",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Sistem pemindaian dan pengarsipan berkas dokumen fisik pemohon paspor berbasis aplikasi desktop client-server."
+            },
+            {
+                id: 24,
+                title: "Sistem Informasi Penjualan Tiket Pesawat",
+                client: "PT. Lumintu Insan Mandiri",
+                tech: "Visual Basic 6.0",
+                year: "2004",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Aplikasi reservasi dan cetak tiket penerbangan agen perjalanan maskapai."
+            },
+            {
+                id: 25,
+                title: "Sistem Informasi Akuntansi",
+                client: "PT. Lumintu Insan Mandiri",
+                tech: "Visual Basic 6.0",
+                year: "2004",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Aplikasi modul jurnal umum, buku besar, neraca saldo, dan laporan keuangan perusahaan."
+            },
+            {
+                id: 26,
+                title: "Sistem Informasi Parkir Building",
+                client: "PT. Primantara Wisesa Sejahtera",
+                tech: "Visual Basic 6.0",
+                year: "2002",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Sistem cetak tiket parkir, integrasi palang otomatis, dan penghitungan tarif waktu parkir kendaraan gedung."
+            },
+            {
+                id: 27,
+                title: "SI Service Charge Pengelolaan Gedung & Gudang",
+                client: "PT. Primantara Wisesa Sejahtera",
+                tech: "Visual Basic 6.0",
+                year: "2002",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Aplikasi penagihan iuran pengelolaan gedung, listrik, air, dan keamanan sewa gudang."
+            },
+            {
+                id: 28,
+                title: "Sistem Informasi Absensi Pegawai",
+                client: "PT. Primantara Wisesa Sejahtera",
+                tech: "Visual Basic 6.0",
+                year: "2002",
+                category: "desktop",
+                typeTag: "Intranet / Desktop",
+                desc: "Aplikasi perekaman jam kerja pegawai gedung dan rekapitulasi keterlambatan bulanan."
+            }
+        ];
+
+        let currentCategory = 'all';
+
+        // --- 2. RENDER PORTFOLIO CARDS ---
+        function renderPortfolio(items) {
+            const grid = document.getElementById('portfolioGrid');
+            const counterText = document.getElementById('projectCounterText');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 space-y-3">
+                        <div class="w-12 h-12 mx-auto rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+                            <i data-lucide="folder-search" class="w-6 h-6"></i>
+                        </div>
+                        <p class="text-slate-500 font-medium">Tidak ada proyek yang sesuai dengan pencarian atau filter.</p>
+                    </div>
+                `;
+                counterText.innerText = "Menampilkan 0 dari 27 Proyek";
+                lucide.createIcons();
+                return;
+            }
+
+            items.forEach(proj => {
+                const card = document.createElement('div');
+                card.className = "rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-lg hover:shadow-xl hover:border-sky-500/50 transition-all flex flex-col justify-between cursor-pointer group";
+                card.onclick = () => openProjectModal(proj.id);
+
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-0.5 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 text-xs font-bold">
+                                ${proj.year}
+                            </span>
+                            <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[11px] font-semibold">
+                                ${proj.typeTag}
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors line-clamp-2">
+                            ${proj.title}
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1">
+                            <i data-lucide="building" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+                            <span class="truncate">${proj.client}</span>
+                        </p>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-semibold text-sky-600 dark:text-sky-400 truncate max-w-[180px]">
+                            ${proj.tech}
+                        </span>
+                        <div class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            counterText.innerText = `Menampilkan ${items.length} dari ${projectsData.length} Proyek`;
+            lucide.createIcons();
+        }
+
+        // --- 3. FILTERING & SEARCH LOGIC ---
+        function filterPortfolio(category) {
+            currentCategory = category;
+            
+            // Update filter button styles
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = "filter-btn active-filter px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-sm";
+                } else {
+                    btn.className = "filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700";
+                }
+            });
+
+            searchPortfolio();
+        }
+
+        function searchPortfolio() {
+            const query = document.getElementById('portfolioSearch').value.toLowerCase().trim();
+            
+            const filtered = projectsData.filter(proj => {
+                const matchCategory = (currentCategory === 'all') || (proj.category === currentCategory);
+                const matchQuery = proj.title.toLowerCase().includes(query) ||
+                                   proj.client.toLowerCase().includes(query) ||
+                                   proj.tech.toLowerCase().includes(query) ||
+                                   proj.year.includes(query);
+                return matchCategory && matchQuery;
+            });
+
+            renderPortfolio(filtered);
+        }
+
+        // --- 4. MODAL POPUP LOGIC ---
+        function openProjectModal(id) {
+            const proj = projectsData.find(p => p.id === id);
+            if (!proj) return;
+
+            document.getElementById('modalTitle').innerText = proj.title;
+            document.getElementById('modalClient').innerText = proj.client;
+            document.getElementById('modalTech').innerText = proj.tech;
+            document.getElementById('modalYear').innerText = proj.year;
+            document.getElementById('modalCategory').innerText = proj.category.toUpperCase();
+            document.getElementById('modalDesc').innerText = proj.desc;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside box
+        window.onclick = function(e) {
+            const modal = document.getElementById('projectModal');
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        }
+
+        // --- 5. TAB EXPERIENCE SWITCHER ---
+        function switchExperienceTab(tab) {
+            const teaching = document.getElementById('teachingContent');
+            const industry = document.getElementById('industryContent');
+            const btnTeaching = document.getElementById('tabTeachingBtn');
+            const btnIndustry = document.getElementById('tabIndustryBtn');
+
+            if (tab === 'teaching') {
+                teaching.classList.remove('hidden');
+                industry.classList.add('hidden');
+                btnTeaching.className = "px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-md";
+                btnIndustry.className = "px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            } else {
+                teaching.classList.add('hidden');
+                industry.classList.remove('hidden');
+                btnIndustry.className = "px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-md";
+                btnTeaching.className = "px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            }
+        }
+
+        // --- 6. WHATSAPP MESSAGE BUILDER ---
+        function sendWhatsAppMessage(e) {
+            e.preventDefault();
+            const name = document.getElementById('formName').value;
+            const org = document.getElementById('formOrg').value;
+            const topic = document.getElementById('formTopic').value;
+            const msg = document.getElementById('formMessage').value;
+
+            const text = `Halo Pak Deddy Rusdiansyah, M.Kom,%0A%0ANama Saya: *${name}*%0AInstansi/Kampus: *${org}*%0ATopik: *${topic}*%0A%0APesan / Kebutuhan:%0A${msg}%0A%0A_Dikirim melalui deddydev.com_`;
+            
+            window.open(`https://wa.me/6287774037723?text=${text}`, '_blank');
+        }
+
+        // --- 7. DARK/LIGHT MODE TOGGLE ---
+        const themeBtn = document.getElementById('themeToggleBtn');
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Restore saved theme on load
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // --- 8. MOBILE MENU TOGGLE ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- 9. INITIALIZATION ON WINDOW LOAD ---
+        window.onload = function() {
+            lucide.createIcons();
+            renderPortfolio(projectsData);
+        };
+    </script>
+</body>
+</html>
